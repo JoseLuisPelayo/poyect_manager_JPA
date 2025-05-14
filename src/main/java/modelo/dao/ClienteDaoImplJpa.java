@@ -30,7 +30,6 @@ public class ClienteDaoImplJpa extends AbsConexionJpa implements ClienteDao{
 		tx.commit();
 		filas = 1;
 		}catch(Exception e) {
-			e.printStackTrace();
 			filas = 0;
 		}
 		
@@ -39,7 +38,7 @@ public class ClienteDaoImplJpa extends AbsConexionJpa implements ClienteDao{
 
 
 	@Override
-	public int deletebyId(String cif) {
+	public int deleteById(String cif) {
 		filas = 0;
 		Cliente cliente = null;
 		try {

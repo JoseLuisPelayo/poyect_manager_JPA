@@ -18,7 +18,7 @@ public class DepartamentoDaoImplMy8Jpa extends AbsConexionJpa implements Departa
 		jpql = "from Departamento d";
 		query = em.createQuery(jpql);
 		return query.getResultList();
-	}
+	} 
 
 	@Override
 	public int insert(Departamento departamento) {

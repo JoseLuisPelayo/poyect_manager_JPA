@@ -27,10 +27,10 @@ public class TestPerfilDaoImpl {
 		Perfil perfil = pDao.findAll().getLast();
 		
 		System.out.println("Borro el último registro insertado, debe dar uno : " 
-				+ pDao.deletebyId(perfil.getIdPerfil()));
+				+ pDao.deleteById(perfil.getIdPerfil()));
 		
 		System.out.println("Borro el mismo registro, debe dar cero : " 
-				+ pDao.deletebyId(perfil.getIdPerfil()));
+				+ pDao.deleteById(perfil.getIdPerfil()));
 	}
 	
 	private static void actualizar() {
