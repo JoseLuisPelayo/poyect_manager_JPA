@@ -52,7 +52,7 @@ public class PerfilDaoImplMy8Jpa extends AbsConexionJpa implements PerfilDao {
 	}
 
 	@Override
-	public int deletebyId(Integer atributoPk) {
+	public int deleteById(Integer atributoPk) {
 		Perfil p = findById(atributoPk);
 		
 		try {
