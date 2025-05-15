@@ -57,8 +57,6 @@ public class Empleado implements Serializable {
 	public Empleado() {
 	}
 
-
-
 	public Empleado(int idEmpl, String apellidos, String email, LocalDate fechaIngreso, LocalDate fechaNacimiento, String genero,
 			String nombre, String password, double salario, Departamento departamento, Perfil perfil) {
 		super();
@@ -74,8 +72,6 @@ public class Empleado implements Serializable {
 		this.departamento = departamento;
 		this.perfil = perfil;
 	}
-
-
 
 	public int getIdEmpl() {
 		return this.idEmpl;
@@ -189,5 +185,15 @@ public class Empleado implements Serializable {
 	}
 	
 	//METODOS PROPIOS
+	public double salarioMensual(int meses) {
+		return salario / meses;
+	}
 	
+	public String literalGenero() {
+		return genero.toLowerCase().equals("h") ? "Hombre" : "Mujer";
+	}
+	
+	public String nombreCompleto() {
+		return nombre + " " + apellidos;
+	}
 }

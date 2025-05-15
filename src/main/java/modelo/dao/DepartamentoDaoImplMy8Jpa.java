@@ -43,9 +43,10 @@ public class DepartamentoDaoImplMy8Jpa extends AbsConexionJpa implements Departa
 				em.merge(departamento);
 				tx.commit();
 				filas = 1;
-			}
+			} else
+				filas = 0;
 		} catch (Exception e) {
-			filas = 0;
+			filas = -1;
 		}
 
 		return filas;
