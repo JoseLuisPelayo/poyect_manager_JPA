@@ -145,7 +145,7 @@ private static Cliente cliente2;
 			String cif = leer.next();
 			
 			if(cdao.findById(cif) != null)
-				switch(cdao.deletebyId(cif)){
+				switch(cdao.deleteById(cif)){
 				case 0: 
 					System.out.println("El cif introducido no se corresponde a ningun cliente");
 					break;

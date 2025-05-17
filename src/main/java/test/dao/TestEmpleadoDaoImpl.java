@@ -2,16 +2,26 @@ package test.dao;
 
 import java.time.LocalDate;
 
+import modelo.dao.DepartamentoDao;
+import modelo.dao.DepartamentoDaoImplMy8Jpa;
 import modelo.dao.EmpleadoDao;
 import modelo.dao.EmpleadoDaoImplMy8Jpa;
+import modelo.dao.PerfilDao;
+import modelo.dao.PerfilDaoImplMy8Jpa;
 import modelo.entities.Empleado;
 
 public class TestEmpleadoDaoImpl {
 
 	private static EmpleadoDao eDao;
+	private static DepartamentoDao dDao;
+	private static PerfilDao pDao;
 	
 	static {
+		
 		eDao = new EmpleadoDaoImplMy8Jpa();
+		dDao = new DepartamentoDaoImplMy8Jpa();
+		pDao = new PerfilDaoImplMy8Jpa();
+		
 	}
 	
 	public static void main(String[] args) {
@@ -27,6 +37,7 @@ public class TestEmpleadoDaoImpl {
 		salarioTotal();
 		salarioPorDapartamento();
 		porPerfil();
+		
 	}
 	
 	private static void porPerfil() {
@@ -45,7 +56,7 @@ public class TestEmpleadoDaoImpl {
 	
 	private static void porApellido() {
 		System.out.println("\nBusco por el apellido ");
-		eDao.empleadosByApellido("col").stream().forEach(System.out::println);
+		eDao.empleadosByApellido("o").stream().forEach(System.out::println);
 	}
 	
 	private static void porGenero() {
@@ -72,7 +83,7 @@ public class TestEmpleadoDaoImpl {
 		int id = eDao.findAll().getLast().getIdEmpl();
 		System.out.println("Borro el que acabo de insertar, debe dar 1: " 
 					+ eDao.deleteById(id));
-		System.out.println("Borro el mismo debe dar null: " + eDao.deleteById(id));
+		System.out.println("Borro el mismo debe dar 0: " + eDao.deleteById(id));
 	}
 	
 	private static void insertar() {
@@ -86,8 +97,8 @@ public class TestEmpleadoDaoImpl {
 							"jose",
 							"1234",
 							125.5,
-							null,
-							null);
+							dDao.findById(40),
+							pDao.findById(1));
 		
 		System.out.println(" Inserto un nuevo departamento, debe dar: " + eDao.insert(emp));
 	}
