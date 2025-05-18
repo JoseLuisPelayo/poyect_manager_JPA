@@ -21,7 +21,7 @@ public class EmpleadoDaoImplMy8Jpa extends AbsConexionJpa implements EmpleadoDao
 			em.persist(empl);
 			tx.commit();
 			filas = 1;
-			
+
 		} catch (Exception e) {
 			filas = 0;
 		}
@@ -62,7 +62,7 @@ public class EmpleadoDaoImplMy8Jpa extends AbsConexionJpa implements EmpleadoDao
 
 			} else
 				filas = 0;
-			
+
 		} catch (Exception e) {
 			filas = -1;
 		}
@@ -74,66 +74,60 @@ public class EmpleadoDaoImplMy8Jpa extends AbsConexionJpa implements EmpleadoDao
 	public List<Empleado> findAll() {
 		jpql = "from Empleado e";
 		query = em.createQuery(jpql);
-		
+
 		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Empleado> empleadosByDepartamento(int id) {
 		jpql = "from Empleado e where e.departamento.idDepar = :id";
-		
-		query = em.createQuery(jpql)
-					.setParameter("id", id);
-		
+
+		query = em.createQuery(jpql).setParameter("id", id);
+
 		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Empleado> empleadosByGenero(char gen) {
 		jpql = "from Empleado e where e.genero = :genero";
-		Character str = gen;
-		
-		query = em.createQuery(jpql)
-				.setParameter("genero", str.toString());
-		
+
+		query = em.createQuery(jpql).setParameter("genero", String.valueOf(gen));
+
 		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Empleado> empleadosByApellido(String subcadena) {
 		jpql = "from Empleado e where e.apellidos like :sub";
-		query = em.createQuery(jpql)
-					.setParameter("sub", "%" + subcadena + "%");
-		
+		query = em.createQuery(jpql).setParameter("sub", "%" + subcadena + "%");
+
 		return query.getResultList();
 	}
 
 	public double salarioTotal() {
 		jpql = "select sum(e.salario) from Empleado e";
 		query = em.createQuery(jpql);
-		
+
 		Double res = (Double) query.getSingleResult();
-		
+
 		return (res == null) ? 0.0 : res;
 	}
 
 	public double salarioTotal(int idDepartamento) {
 		jpql = "select sum(e.salario) from Empleado e where e.departamento.idDepar like :id";
-		query = em.createQuery(jpql)
-					.setParameter("id", "%" + idDepartamento + "%");
+		query = em.createQuery(jpql).setParameter("id", "%" + idDepartamento + "%");
 		
-		Double res = (Double) query.getSingleResult();
-		
-		return (res == null) ? 0.0 : res;
+		Double res = (Double)query.getSingleResult();
+
+		return (res != null) ? res: 0.0;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Empleado> empleadosByIdPerfil(int id) {
 		jpql = "from Empleado e where e.perfil.idPerfil = :id";
-		
-		query = em.createQuery(jpql)
-					.setParameter("id", id);
-		
+
+		query = em.createQuery(jpql).setParameter("id", id);
+
 		return query.getResultList();
 	}
 }
